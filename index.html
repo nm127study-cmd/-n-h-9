@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Đề Kiểm Tra Ngữ Pháp Tiếng Anh | Các Thì Cơ Bản</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg-color: #f1f5f9;
+    --surface: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --success: #16a34a;
+    --success-bg: #dcfce7;
+    --danger: #ef4444;
+    --danger-bg: #fee2e2;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.1);
+    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; }
+  
+  html, body {
+    margin: 0; padding: 0; height: 100%;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    background-color: var(--bg-color);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 { margin-top: 0; color: var(--text-main); }
+
+  .app-container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+
+  .screen {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+  .screen.active { display: block; }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Typography */
+  .brand-title {
+    font-size: 28px;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+    color: var(--primary);
+  }
+  .brand-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 32px;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: var(--radius);
+    padding: 12px 24px;
+    color: #fff;
+    background-color: var(--primary);
+    transition: all 0.15s ease;
+  }
+  .btn:hover { background-color: var(--primary-hover); }
+  .btn.danger { background-color: var(--danger); }
+  .btn.danger:hover { background-color: #dc2626; }
+  .btn.secondary { background-color: #475569; }
+  .btn.secondary:hover { background-color: #334155; }
+  .btn.ghost { background-color: transparent; color: var(--primary); border: 1px solid var(--primary); }
+  .btn.ghost:hover { background-color: #eff6ff; }
+  
+  /* Inputs */
+  input[type=text] {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #f8fafc;
+  }
+  input[type=text]:focus { border-color: var(--primary); background: #fff; }
+  label.field-label { font-weight: 600; font-size: 14px; color: var(--text-main); display: block; margin: 16px 0 8px; }
+
+  /* Rules / Info box */
+  .info-box {
+    background: #f8fafc;
+    border-left: 4px solid var(--primary);
+    padding: 16px 20px;
+    margin: 24px 0;
+    border-radius: 0 8px 8px 0;
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+  .info-box ul { margin: 8px 0 0; padding-left: 20px; }
+  .info-box li { margin-bottom: 6px; }
+  .info-box strong { color: var(--text-main); }
+
+  /* Topbar (Timer & Progress) */
+  .topbar {
+    position: sticky;
+    top: 16px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 20px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .timer {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .timer.low { color: var(--danger); animation: pulse 1s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  
+  .progress-wrap { flex: 1; min-width: 150px; }
+  .progress-bar { height: 8px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.3s ease; }
+  .progress-text { font-size: 12px; color: var(--text-muted); font-weight: 500; margin-top: 6px; text-align: right; }
+
+  /* Test Content */
+  .part-header {
+    margin: 40px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  .part-title { font-size: 18px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; text-transform: uppercase; }
+  .part-instr { color: var(--text-muted); font-size: 14px; font-style: italic; }
+
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+  .q-card:hover { border-color: #cbd5e1; }
+  
+  .q-text { font-size: 15px; font-weight: 500; margin-bottom: 16px; line-height: 1.6; }
+  .q-num { font-weight: 700; color: var(--primary); margin-right: 4px; }
+  
+  .options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media(max-width: 600px) { .options { grid-template-columns: 1fr; } }
+  
+  .opt {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 14px;
+    background: #f8fafc;
+  }
+  .opt:hover { border-color: #94a3b8; }
+  .opt.selected { border-color: var(--primary); background: #eff6ff; }
+  .opt input { accent-color: var(--primary); width: 16px; height: 16px; margin: 0; }
+  
+  .blank-input {
+    width: auto; min-width: 150px; max-width: 300px;
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 0 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    color: var(--primary);
+  }
+  
+  .passage-box {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--text-muted);
+    border-radius: 4px 8px 8px 4px;
+    padding: 20px;
+    margin-bottom: 24px;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* Submit Bar */
+  .submit-bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    z-index: 20;
+    box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.05);
+  }
+
+  /* Modals */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 50;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal-box {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 32px;
+    max-width: 440px;
+    width: 100%;
+    text-align: center;
+    box-shadow: var(--shadow-md);
+  }
+  .modal-box h2 { margin: 0 0 12px; font-size: 20px; }
+  .modal-box p { color: var(--text-muted); font-size: 15px; margin-bottom: 24px; }
+  .modal-box.warning h2 { color: var(--danger); }
+
+  /* Result Screen */
+  .result-hero { text-align: center; padding: 40px 20px; }
+  .score-circle {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    margin: 24px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: conic-gradient(var(--primary) calc(var(--pct)*1%), #e2e8f0 0);
+    position: relative;
+  }
+  .score-circle:before {
+    content: ''; position: absolute; inset: 8px;
+    background: var(--surface); border-radius: 50%;
+  }
+  .score-circle .num { position: relative; font-size: 32px; font-weight: 800; color: var(--text-main); }
+  .score-circle .lbl { position: relative; font-size: 13px; color: var(--text-muted); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
+  
+  .part-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .ps-item {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px;
+    text-align: center;
+  }
+  .ps-item .p-name { font-weight: 600; color: var(--text-muted); font-size: 12px; text-transform: uppercase; margin-bottom: 4px; }
+  .ps-item .p-score { font-size: 18px; font-weight: 700; color: var(--primary); }
+</style>
+</head>
+<body>
+
+<div class="app-container">
+
+  <div class="brand-title">ĐỀ KIỂM TRA NGỮ PHÁP TIẾNG ANH</div>
+  <div class="brand-subtitle">Chuyên đề: CÁC THÌ CƠ BẢN TRONG TIẾNG ANH</div>
+
+  <!-- ============ START SCREEN ============ -->
+  <section id="screen-start" class="screen active">
+    <div class="card">
+      <h2 style="margin-bottom: 8px;">Thông tin thí sinh</h2>
+      <p style="color: var(--text-muted); font-size: 14px; margin-top: 0;">Vui lòng điền đầy đủ thông tin trước khi làm bài.</p>
+
+      <label class="field-label">Họ và tên</label>
+      <input type="text" id="input-name" placeholder="Nhập họ và tên...">
+      
+      <label class="field-label">Lớp</label>
+      <input type="text" id="input-class" placeholder="Nhập lớp...">
+
+      <div class="info-box">
+        <strong>Quy chế thi:</strong>
+        <ul>
+          <li>Thời gian làm bài: <strong>60 phút</strong>.</li>
+          <li>Tổng số câu hỏi: <strong>51 câu</strong> (Trắc nghiệm & Tự luận ngắn).</li>
+          <li>Hệ thống sẽ chạy ở chế độ <strong>toàn màn hình</strong>. Việc thoát toàn màn hình hoặc chuyển tab sẽ bị cảnh báo và ghi nhận vào hệ thống giám thị.</li>
+          <li>Kết quả được tự động lưu về máy chủ sau khi nộp bài.</li>
+        </ul>
+      </div>
+
+      <div style="text-align: center; margin-top: 32px;">
+        <button class="btn" id="btn-start" style="width: 100%; max-width: 300px;">Bắt đầu làm bài</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEST SCREEN ============ -->
+  <section id="screen-test" class="screen">
+    <div class="topbar">
+      <div class="timer" id="timer-display">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        60:00
+      </div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+        <div class="progress-text" id="progress-text">0 / 51 câu đã trả lời</div>
+      </div>
+    </div>
+    
+    <div id="quiz-body"></div>
+    
+    <div class="submit-bar">
+      <button class="btn danger" id="btn-submit" style="min-width: 200px;">Nộp bài thi</button>
+    </div>
+  </section>
+
+  <!-- ============ RESULT SCREEN ============ -->
+  <section id="screen-result" class="screen">
+    <div class="card result-hero">
+      <h2 id="result-name-line">Hoàn thành bài thi!</h2>
+      <p style="color: var(--text-muted);" id="result-time-line"></p>
+      
+      <div class="score-circle" id="score-circle" style="--pct:0;">
+        <div class="num" id="score-num">0/51</div>
+        <div class="lbl">Tổng điểm</div>
+      </div>
+      
+      <div id="result-msg" style="font-weight: 600; font-size: 16px; margin-bottom: 24px;"></div>
+      
+      <div style="font-size: 14px; color: var(--success); font-weight: 600; background: var(--success-bg); padding: 12px; border-radius: var(--radius); margin-bottom: 24px;">
+        ✓ Kết quả của bạn đã được ghi nhận thành công lên hệ thống.
+      </div>
+
+      <div style="text-align: left;">
+        <h3 style="font-size: 14px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 12px;">Chi tiết điểm thành phần</h3>
+        <div class="part-summary" id="part-summary"></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Warning modal -->
+<div class="modal-overlay" id="modal-warning">
+  <div class="modal-box warning">
+    <h2>CẢNH BÁO VI PHẠM!</h2>
+    <p id="modal-warning-text">Hệ thống phát hiện bạn vừa thoát khỏi chế độ làm bài. Hành động này đã được ghi vào biên bản thi.</p>
+    <button class="btn" id="btn-resume">Quay lại làm bài</button>
+  </div>
+</div>
+
+<!-- Time up modal -->
+<div class="modal-overlay" id="modal-timeup">
+  <div class="modal-box">
+    <h2>Hết giờ làm bài!</h2>
+    <p>Hệ thống đang tự động thu bài của bạn...</p>
+  </div>
+</div>
+
+<!-- Confirm modal -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal-box">
+    <h2 id="confirm-title">Xác nhận nộp bài</h2>
+    <p id="confirm-text"></p>
+    <div style="display: flex; gap: 12px; justify-content: center; margin-top: 24px;">
+      <button class="btn ghost" id="confirm-cancel-btn">Hủy</button>
+      <button class="btn" id="confirm-ok-btn">Đồng ý nộp</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* =========================================================
+   CONFIG
+========================================================= */
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbz_8GJ73MUbJPoTNT786ISgpOSw8fsDMmBwYcocIfJkQsIp23ZFDJzfoKS8qP3_LO3SAQ/exec";
+const TEST_DURATION_SECONDS = 60 * 60; // 60 phút
+
+/* =========================================================
+   QUESTION BANK
+========================================================= */
+const PARTS_META = {
+  I: { title: "PHẦN I. TRẮC NGHIỆM", instr: "Chọn đáp án đúng để hoàn thành mỗi câu." },
+  II: { title: "PHẦN II. CHIA ĐỘNG TỪ", instr: "Chia động từ trong ngoặc ở thì thích hợp." },
+  III_1: { title: "PHẦN III.1. TÌM VÀ SỬA LỖI SAI", instr: "Xác định từ sai (A, B, C, D) và điền TỪ ĐÃ SỬA LẠI (cho đúng ngữ pháp) vào ô trống." },
+  III_2: { title: "PHẦN III.2. VIẾT LẠI CCâu", instr: "Viết tiếp phần còn thiếu sao cho nghĩa câu không thay đổi." },
+  III_3: { title: "PHẦN III.3. ĐIỀN TỪ VÀO ĐOẠN VĂN", instr: "Điền dạng đúng của động từ trong ngoặc." }
+};
+
+const QUESTIONS = [
+  // PHẦN I
+  { id: "I_1", part: "I", type: "choice", text: "My father usually ______ the newspaper in the morning.", options: ["read", "reads", "is reading", "was reading"], answer: 1 },
+  { id: "I_2", part: "I", type: "choice", text: "Be quiet! The baby ______ right now.", options: ["sleeps", "slept", "is sleeping", "has slept"], answer: 2 },
+  { id: "I_3", part: "I", type: "choice", text: "I ______ for this company since 2015.", options: ["work", "worked", "have worked", "am working"], answer: 2 },
+  { id: "I_4", part: "I", type: "choice", text: "She ______ her homework already.", options: ["finished", "has finished", "finishes", "was finishing"], answer: 1 },
+  { id: "I_5", part: "I", type: "choice", text: "We ______ to the beach last summer.", options: ["go", "went", "have gone", "were going"], answer: 1 },
+  { id: "I_6", part: "I", type: "choice", text: "At 8 p.m. last night, I ______ dinner.", options: ["cook", "cooked", "was cooking", "have cooked"], answer: 2 },
+  { id: "I_7", part: "I", type: "choice", text: "The train ______ before we got to the station.", options: ["left", "had left", "has left", "was leaving"], answer: 1 },
+  { id: "I_8", part: "I", type: "choice", text: "I think it ______ tomorrow.", options: ["rains", "will rain", "is raining", "rained"], answer: 1 },
+  { id: "I_9", part: "I", type: "choice", text: "This time next week, we ______ our holiday in Da Nang.", options: ["will enjoy", "enjoy", "will be enjoying", "are enjoying"], answer: 2 },
+  { id: "I_10", part: "I", type: "choice", text: "By 2025, he ______ from university.", options: ["graduates", "will graduate", "will have graduated", "is graduating"], answer: 2 },
+  { id: "I_11", part: "I", type: "choice", text: "Look at the sky! It ______ .", options: ["rains", "will rain", "is going to rain", "rained"], answer: 2 },
+  { id: "I_12", part: "I", type: "choice", text: "The sun ______ in the east.", options: ["rise", "rises", "is rising", "rose"], answer: 1 },
+  { id: "I_13", part: "I", type: "choice", text: "Columbus ______ America in 1492.", options: ["discover", "discovered", "has discovered", "was discovering"], answer: 1 },
+  { id: "I_14", part: "I", type: "choice", text: "______ you ever ______ to Japan?", options: ["Did / go", "Have / gone", "Do / go", "Were / going"], answer: 1 },
+  { id: "I_15", part: "I", type: "choice", text: "A: The phone is ringing.   B: I ______ it.", options: ["answer", "will answer", "am answering", "answered"], answer: 1 },
+  { id: "I_16", part: "I", type: "choice", text: "While she ______ TV, her brother came in.", options: ["watches", "watched", "was watching", "has watched"], answer: 2 },
+
+  // PHẦN II
+  { id: "II_1", part: "II", type: "blank", text: "When Mai called me last night, I (already / go) ___ to bed, so I didn't answer.", answer: ["had already gone", "had gone"] },
+  { id: "II_2", part: "II", type: "blank", text: "Don't worry about your sister; she (know) ___ how to take care of herself.", answer: ["knows"] },
+  { id: "II_3", part: "II", type: "blank", text: "I can't talk now — I (drive) ___ .", answer: ["am driving", "'m driving"] },
+  { id: "II_4", part: "II", type: "blank", text: "He (work) ___ as a teacher for ten years before he changed his career.", answer: ["had worked", "had been working"] },
+  { id: "II_5", part: "II", type: "blank", text: "Our teacher (explain) ___ that lesson twice, but many students still don't understand.", answer: ["has explained"] },
+  { id: "II_6", part: "II", type: "blank", text: "When I arrived at the party, most of the guests (already / leave) ___ .", answer: ["had already left", "had left"] },
+  { id: "II_7", part: "II", type: "blank", text: "She (study) ___ a lot this week, so she should do well in the exam.", answer: ["has studied", "has been studying"] },
+  { id: "II_8", part: "II", type: "blank", text: "By the time the guests arrive, we (finish) ___ cooking dinner, I hope.", answer: ["will have finished"] },
+  { id: "II_9", part: "II", type: "blank", text: "Turn off the stove! The soup (boil) ___ over!", answer: ["is boiling"] },
+  { id: "II_10", part: "II", type: "blank", text: "In the 1800s, people (travel) ___ mostly by horse and carriage.", answer: ["travelled", "traveled"] },
+  { id: "II_11", part: "II", type: "blank", text: "I'm afraid I can't come to your party tonight because I (already / promise) ___ to help my cousin move house.", answer: ["have already promised", "'ve already promised", "have promised"] },
+  { id: "II_12", part: "II", type: "blank", text: "Look at the schedule — our flight (depart) ___ at 6 a.m. tomorrow.", answer: ["departs", "is departing"] },
+  { id: "II_13", part: "II", type: "blank", text: "Call me after 9 p.m. I (probably / watch) ___ TV then, so I might not hear the phone at first.", answer: ["will probably be watching", "'ll probably be watching"] },
+  { id: "II_14", part: "II", type: "blank", text: "She was upset because she (lose) ___ her wallet the day before.", answer: ["had lost"] },
+  { id: "II_15", part: "II", type: "blank", text: "Don't disturb your dad — he (work) ___ on an important project right now.", answer: ["is working", "'s working"] },
+
+  // PHẦN III.1
+  { id: "III_1_1", part: "III_1", type: "blank", text: "Since I was a child, (A) I (B) <b>dream</b> (C) of becoming (D) an astronaut every night.<br><br>→ Sửa thành: ___", answer: ["have dreamed", "have dreamt", "'ve dreamed", "'ve dreamt"] },
+  { id: "III_1_2", part: "III_1", type: "blank", text: "By the time we (A) get to the cinema, the film (B) will (C) <b>already start</b> (D).<br><br>→ Sửa thành: ___", answer: ["have already started"] },
+  { id: "III_1_3", part: "III_1", type: "blank", text: "He (A) has (B) <b>went</b> (C) to Paris (D) three times this year.<br><br>→ Sửa thành: ___", answer: ["been", "gone"] },
+  { id: "III_1_4", part: "III_1", type: "blank", text: "I (A) have finished (B) my homework (C) <b>since</b> (D) two hours.<br><br>→ Sửa thành: ___", answer: ["for", "ago", "two hours ago"] },
+  { id: "III_1_5", part: "III_1", type: "blank", text: "When she (A) was young, she (B) <b>has lived</b> (C) in three (D) different countries.<br><br>→ Sửa thành: ___", answer: ["lived"] },
+
+  // PHẦN III.2
+  { id: "III_2_1", part: "III_2", type: "blank", text: "It's two years since I last saw her.<br>→ I ___ her for two years.", answer: ["have not seen", "haven't seen", "have never seen"] },
+  { id: "III_2_2", part: "III_2", type: "blank", text: "She will finish her project before the deadline.<br>→ By the deadline, she ___ her project.", answer: ["will have finished", "'ll have finished"] },
+  { id: "III_2_3", part: "III_2", type: "blank", text: "The train left. Then we arrived at the station.<br>→ By the time we arrived at the station, the train ___ .", answer: ["had left", "had already left"] },
+  { id: "III_2_4", part: "III_2", type: "blank", text: "Those dark clouds mean rain is coming.<br>→ Look at those dark clouds! It ___ .", answer: ["is going to rain", "'s going to rain"] },
+  { id: "III_2_5", part: "III_2", type: "blank", text: "She will be busy studying at 8 p.m. tomorrow.<br>→ At 8 p.m. tomorrow, she ___ .", answer: ["will be studying", "'ll be studying"] },
+
+  // PHẦN III.3
+  { id: "III_3_1", part: "III_3", type: "blank", passage: "Last month, Nam (1. decide) ___ to run in his first marathon. He (2. train) ___ hard for three months before the race, so he (3. feel) ___ confident on race day. On the morning of the marathon, thousands of runners (4. gather) ___ at the starting line. By the time the gun (5. fire) ___ , Nam (6. already / warm) ___ up properly. He (7. run) ___ steadily for the first 30 kilometers, but then his legs (8. start) ___ to hurt. He (9. never / experience) ___ such pain before, yet he refused to give up. When he finally (10. cross) ___ the finish line, his family was there to cheer for him.", text: "(1. decide) ___", answer: ["decided"] },
+  { id: "III_3_2", part: "III_3", type: "blank", text: "(2. train) ___", answer: ["had trained", "had been training"] },
+  { id: "III_3_3", part: "III_3", type: "blank", text: "(3. feel) ___", answer: ["felt"] },
+  { id: "III_3_4", part: "III_3", type: "blank", text: "(4. gather) ___", answer: ["gathered", "were gathering"] },
+  { id: "III_3_5", part: "III_3", type: "blank", text: "(5. fire) ___", answer: ["fired", "was fired"] },
+  { id: "III_3_6", part: "III_3", type: "blank", text: "(6. already / warm) ___", answer: ["had already warmed", "had already warmed up"] },
+  { id: "III_3_7", part: "III_3", type: "blank", text: "(7. run) ___", answer: ["ran", "was running"] },
+  { id: "III_3_8", part: "III_3", type: "blank", text: "(8. start) ___", answer: ["started", "began"] },
+  { id: "III_3_9", part: "III_3", type: "blank", text: "(9. never / experience) ___", answer: ["had never experienced"] },
+  { id: "III_3_10", part: "III_3", type: "blank", text: "(10. cross) ___", answer: ["crossed"] }
+];
+
+const TOTAL_POINTS = QUESTIONS.length;
+
+/* =========================================================
+   STATE
+========================================================= */
+let studentAnswers = {}; 
+let remainingSeconds = TEST_DURATION_SECONDS;
+let timerHandle = null;
+let violations = [];
+let testStartedAt = null;
+let testInFullscreen = false;
+let submitted = false;
+
+/* =========================================================
+   HELPERS
+========================================================= */
+function $(id) { return document.getElementById(id); }
+
+function showConfirm(message) {
+  return new Promise(resolve => {
+    $("confirm-text").textContent = message;
+    const cancelBtn = $("confirm-cancel-btn");
+    const okBtn = $("confirm-ok-btn");
+    cancelBtn.style.display = "inline-flex";
+    
+    const cleanup = (result) => {
+      $("modal-confirm").classList.remove("active");
+      okBtn.removeEventListener("click", onOk);
+      cancelBtn.removeEventListener("click", onCancel);
+      resolve(result);
+    };
+    const onOk = () => cleanup(true);
+    const onCancel = () => cleanup(false);
+    okBtn.addEventListener("click", onOk);
+    cancelBtn.addEventListener("click", onCancel);
+    $("modal-confirm").classList.add("active");
+  });
+}
+
+function showAlert(message) {
+  return new Promise(resolve => {
+    $("confirm-text").textContent = message;
+    const cancelBtn = $("confirm-cancel-btn");
+    const okBtn = $("confirm-ok-btn");
+    cancelBtn.style.display = "none";
+    okBtn.textContent = "Đã hiểu";
+    
+    const cleanup = () => {
+      $("modal-confirm").classList.remove("active");
+      okBtn.removeEventListener("click", onOk);
+      resolve();
+    };
+    const onOk = () => cleanup();
+    okBtn.addEventListener("click", onOk);
+    $("modal-confirm").classList.add("active");
+  });
+}
+
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  $(id).classList.add("active");
+}
+
+function normalize(str) { 
+  return (str || "").toString().trim().toLowerCase().replace(/[.,!?]/g,"").replace(/\s+/g, " "); 
+}
+
+/* =========================================================
+   RENDER QUIZ
+========================================================= */
+function renderQuiz() {
+  const body = $("quiz-body");
+  let html = "";
+  let currentPart = null;
+  let qIndex = 0;
+
+  QUESTIONS.forEach(q => {
+    if (q.part !== currentPart) {
+      currentPart = q.part;
+      const meta = PARTS_META[currentPart];
+      html += `
+        <div class="part-header">
+          <div class="part-title">${meta.title}</div>
+          <div class="part-instr">${meta.instr}</div>
+        </div>`;
+    }
+    
+    if (q.passage) {
+      html += `<div class="passage-box">${q.passage}</div>`;
+    }
+    
+    qIndex++;
+    html += renderQuestionCard(q, qIndex);
+  });
+
+  body.innerHTML = html;
+  attachHandlers();
+  updateProgress();
+}
+
+function renderQuestionCard(q, index) {
+  let inner = "";
+
+  if (q.type === "choice") {
+    inner += `<div class="q-text"><span class="q-num">${index}.</span> ${q.text}</div><div class="options">`;
+    q.options.forEach((opt, i) => {
+      inner += `
+        <label class="opt" data-qid="${q.id}" data-idx="${i}">
+          <input type="radio" name="${q.id}" value="${i}"> <span>${opt}</span>
+        </label>`;
+    });
+    inner += `</div>`;
+  }
+  else if (q.type === "blank") {
+    if (q.text.includes("___")) {
+      const [before, after] = q.text.split("___");
+      inner += `<div class="q-text"><span class="q-num">${index}.</span> ${before}
+        <input type="text" class="blank-input" data-qid="${q.id}" autocomplete="off" placeholder="...">
+        ${after || ""}</div>`;
+    } else {
+      inner += `<div class="q-text"><span class="q-num">${index}.</span> ${q.text}</div>
+        <input type="text" class="blank-input" style="width:100%; max-width:100%;" data-qid="${q.id}" autocomplete="off" placeholder="Nhập câu trả lời...">`;
+    }
+  }
+  
+  return `<div class="q-card" data-qcard="${q.id}">${inner}</div>`;
+}
+
+function attachHandlers() {
+  document.querySelectorAll(".opt").forEach(el => {
+    el.addEventListener("click", () => {
+      const qid = el.dataset.qid;
+      document.querySelectorAll(`.opt[data-qid="${qid}"]`).forEach(o => o.classList.remove("selected"));
+      el.classList.add("selected");
+      el.querySelector("input").checked = true;
+      studentAnswers[qid] = parseInt(el.dataset.idx);
+      updateProgress();
+    });
+  });
+  
+  document.querySelectorAll(".blank-input").forEach(el => {
+    el.addEventListener("input", () => {
+      studentAnswers[el.dataset.qid] = el.value;
+      updateProgress();
+    });
+  });
+}
+
+function updateProgress() {
+  const answered = Object.keys(studentAnswers).filter(k => {
+    const v = studentAnswers[k];
+    return v !== undefined && v !== "" && v.toString().trim() !== "";
+  }).length;
+  const pct = Math.round((answered / TOTAL_POINTS) * 100);
+  $("progress-fill").style.width = pct + "%";
+  $("progress-text").textContent = `${answered} / ${TOTAL_POINTS} câu đã trả lời`;
+}
+
+/* =========================================================
+   TIMER
+========================================================= */
+function startTimer() {
+  remainingSeconds = TEST_DURATION_SECONDS;
+  updateTimerDisplay();
+  timerHandle = setInterval(() => {
+    remainingSeconds--;
+    updateTimerDisplay();
+    if (remainingSeconds <= 0) {
+      clearInterval(timerHandle);
+      $("modal-timeup").classList.add("active");
+      setTimeout(() => finishTest(true), 1500);
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(remainingSeconds / 60).toString().padStart(2, "0");
+  const s = (remainingSeconds % 60).toString().padStart(2, "0");
+  const el = $("timer-display");
+  el.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> ${m}:${s}`;
+  el.classList.toggle("low", remainingSeconds <= 300);
+}
+
+/* =========================================================
+   ANTI-CHEAT
+========================================================= */
+function requestFS() {
+  const el = document.documentElement;
+  const req = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+  if (req) {
+    req.call(el).then(() => { testInFullscreen = true; }).catch(() => { testInFullscreen = false; });
+  }
+}
+function isFullscreen() {
+  return !!(document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement);
+}
+function logViolation(type) {
+  violations.push({ type, time: new Date().toISOString() });
+}
+
+document.addEventListener("fullscreenchange", handleFSChange);
+document.addEventListener("webkitfullscreenchange", handleFSChange);
+function handleFSChange() {
+  if (submitted) return;
+  if (!isFullscreen() && $("screen-test").classList.contains("active")) {
+    logViolation("exit_fullscreen");
+    $("modal-warning-text").textContent = `Cảnh báo lần ${violations.length}: Bạn vừa thoát toàn màn hình. Vi phạm này đã được ghi nhận.`;
+    $("modal-warning").classList.add("active");
+  }
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (submitted) return;
+  if (document.hidden && $("screen-test").classList.contains("active")) {
+    logViolation("tab_switch");
+  }
+});
+
+$("btn-resume").addEventListener("click", () => {
+  $("modal-warning").classList.remove("active");
+  requestFS();
+});
+
+window.addEventListener("beforeunload", (e) => {
+  if ($("screen-test").classList.contains("active") && !submitted) {
+    e.preventDefault(); e.returnValue = "";
+  }
+});
+
+/* =========================================================
+   START / SUBMIT
+========================================================= */
+$("btn-start").addEventListener("click", async () => {
+  const name = $("input-name").value.trim();
+  if (!name) { await showAlert("Vui lòng điền Họ và tên trước khi làm bài."); return; }
+  
+  window._studentName = name;
+  window._studentClass = $("input-class").value.trim();
+  studentAnswers = {}; violations = []; submitted = false;
+  testStartedAt = new Date();
+  
+  renderQuiz();
+  showScreen("screen-test");
+  requestFS();
+  startTimer();
+});
+
+$("btn-submit").addEventListener("click", async () => {
+  try {
+    const answered = Object.keys(studentAnswers).filter(k => studentAnswers[k].toString().trim() !== "").length;
+    const msg = answered < TOTAL_POINTS
+      ? `Bạn mới làm ${answered}/${TOTAL_POINTS} câu. Bạn có chắc chắn muốn nộp bài lúc này không?`
+      : "Bạn đã hoàn thành tất cả câu hỏi. Xác nhận nộp bài?";
+    
+    const ok = await showConfirm(msg);
+    if (ok) await finishTest(false);
+  } catch (err) {
+    console.error("Submit error:", err);
+  }
+});
+
+function gradeAndBuildRecord(auto) {
+  let score = 0;
+  const partScores = {};
+  const answerDetails = [];
+
+  QUESTIONS.forEach(q => {
+    let given = studentAnswers[q.id];
+    let correct = false;
+    let givenLabel = "";
+
+    if (q.type === "choice") {
+      correct = given === q.answer;
+      givenLabel = (given !== undefined) ? q.options[given] : "(trống)";
+    } 
+    else if (q.type === "blank") {
+      const gNorm = normalize(given);
+      const cArr = Array.isArray(q.answer) ? q.answer : [q.answer];
+      correct = cArr.some(ans => normalize(ans) === gNorm);
+      givenLabel = given || "(trống)";
+    }
+
+    if (correct) score++;
+    partScores[q.part] = partScores[q.part] || { correct: 0, total: 0 };
+    partScores[q.part].total++;
+    if (correct) partScores[q.part].correct++;
+
+    answerDetails.push({ id: q.id, given: givenLabel, isCorrect: correct });
+  });
+
+  const durationUsedSec = TEST_DURATION_SECONDS - remainingSeconds;
+  // Scaled out of 10 points
+  const scaledScore = ((score / TOTAL_POINTS) * 10).toFixed(2);
+
+  return {
+    name: window._studentName,
+    className: window._studentClass,
+    endTime: new Date(),
+    durationUsedSec,
+    score, 
+    scaledScore,
+    total: TOTAL_POINTS,
+    percentage: Math.round((score / TOTAL_POINTS) * 100),
+    partScores, 
+    violations, 
+    answerDetails,
+    autoSubmitted: auto
+  };
+}
+
+async function finishTest(auto) {
+  if (submitted) return;
+  submitted = true;
+  clearInterval(timerHandle);
+  $("modal-timeup").classList.remove("active");
+  $("modal-warning").classList.remove("active");
+  
+  try {
+    if (isFullscreen() && document.exitFullscreen) await document.exitFullscreen();
+  } catch (err) { console.error("Exit fs:", err); }
+
+  const record = gradeAndBuildRecord(auto);
+  
+  // Data cho Google Sheets
+  const sheetData = {
+    time: record.endTime.toLocaleString("vi-VN"),
+    name: record.name,
+    className: record.className,
+    score: `${record.scaledScore}/10 (${record.score}/${record.total})`,
+    total: record.total,
+    percentage: record.percentage + "%",
+    duration: Math.floor(record.durationUsedSec / 60) + "p " + (record.durationUsedSec % 60) + "s",
+    violations: record.violations.length,
+    type: record.autoSubmitted ? "Hết giờ" : "Tự nộp",
+    violationDetails: record.violations.map(v => v.type === 'exit_fullscreen' ? 'Thoát fullscreen' : 'Chuyển tab').join(', ') || "Không có",
+    details: JSON.stringify(record.answerDetails)
+  };
+
+  // Gửi ngầm tới Apps Script
+  fetch(WEB_APP_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify(sheetData)
+  }).catch(err => console.error(err));
+
+  showResult(record);
+}
+
+function showResult(record) {
+  $("result-name-line").textContent = `Thí sinh: ${record.name} - ${record.className}`;
+  $("result-time-line").textContent = `Hoàn thành lúc: ${record.endTime.toLocaleTimeString("vi-VN")} | Thời gian làm bài: ${Math.floor(record.durationUsedSec / 60)} phút ${record.durationUsedSec % 60} giây`;
+  
+  $("score-num").textContent = record.scaledScore;
+  $("score-circle").style.setProperty("--pct", record.percentage);
+  
+  let msg = "";
+  if (record.percentage >= 85) msg = "Đánh giá: Xuất sắc";
+  else if (record.percentage >= 70) msg = "Đánh giá: Khá giỏi";
+  else if (record.percentage >= 50) msg = "Đánh giá: Đạt (Trung bình)";
+  else msg = "Đánh giá: Cần cố gắng ôn tập thêm";
+  $("result-msg").textContent = msg;
+
+  const ps = $("part-summary");
+  ps.innerHTML = Object.keys(record.partScores).map(p => {
+    const d = record.partScores[p];
+    return `<div class="ps-item"><div class="p-name">${PARTS_META[p].title}</div><div class="p-score">${d.correct}/${d.total}</div></div>`;
+  }).join("");
+
+  showScreen("screen-result");
+}
+</script>
+</body>
+</html>
